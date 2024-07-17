@@ -4,6 +4,9 @@ import {
   useDeleteTodo,
 } from '@/services/exampleServices/todoServices/api/mutations'
 import { useNavigate } from 'react-router-dom'
+import { Primary } from '@/stories/Button.stories'
+import { Button } from '@/stories/Button'
+import { useEffect } from 'react'
 
 const TodosPage = () => {
   const { data: todos } = useTodos({})
@@ -30,11 +33,10 @@ const TodosPage = () => {
   return (
     <div className="border-2">
       <h1 className="text-center text-3xl py-2 text-red-600">Todos</h1>
-
-      <div className="flex items-center">
+      <div className="flex items-center bg-black">
         <button
           onClick={handleCreateTodo}
-          className="border-2 rounded-md p-2 m-4"
+          className="border-2 rounded-md p-2 m-4 text-secondary"
         >
           Create Todo
         </button>

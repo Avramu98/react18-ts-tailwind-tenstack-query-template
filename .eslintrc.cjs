@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true, // Add this to support Node.js environment
   },
   extends: [
     'eslint:recommended',
@@ -9,24 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/jsx-runtime',
     'prettier',
-  ],
-  overrides: [
-    {
-      files: ['src/service-worker/**/*'],
-      env: { serviceworker: true },
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      parserOptions: {
-        tsconfigRootDir: '.',
-        project: ['./src/service-worker/tsconfig.json'],
-      },
-      rules: {
-        '@typescript-eslint/no-unsafe-member-access': 'off',
-        'no-unused-vars': 'warn',
-      },
-    },
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -34,7 +18,20 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint', 'eslint-plugin-prettier'],
+  overrides: [
+    {
+      // or whatever matches stories specified in .storybook/main.js
+      files: ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
+      rules: {
+        // example of overriding a rule
+        'storybook/hierarchy-separator': 'error',
+        // example of disabling a rule
+        'storybook/default-exports': 'off',
+      },
+    },
+  ],
+  ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts', 'tailwind.config.js'],
+  plugins: ['react', '@typescript-eslint', 'eslint-plugin-prettier', 'eslint-plugin-storybook'],
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
@@ -42,8 +39,8 @@ module.exports = {
     'func-names': 'off',
     'implicit-arrow-linebreak': 'off',
     'max-classes-per-file': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-console': 'warn',
+    'no-debugger': 'warn',
     'no-extra-boolean-cast': 'off',
     'no-process-exit': 'off',
     'no-underscore-dangle': 'off',
