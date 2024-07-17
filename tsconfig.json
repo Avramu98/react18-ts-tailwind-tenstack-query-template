@@ -16,13 +16,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "vite/client", "vite-plugin-pwa/client"],
+    "types": ["vitest/globals", "vite/client"],
     "baseUrl": "src/",
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["src", "__mocks__"],
-  "exclude": ["src/service-worker"],
+  "include": ["src"],
+  "exclude": ["src/service-worker", "node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

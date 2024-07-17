@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root,
+.light {
+    --primary: #FCAA67;
+    --secondary: #B0413E;
+    --neutral: #FFFFF;
+    --accent: #F2F2F2;
+}
+.dark {
+    --primary: #548687;
+    --secondary: #FFFFC7;
+    --neutral: #FFFFF;
+    --accent: #F2F2F2;
+}
