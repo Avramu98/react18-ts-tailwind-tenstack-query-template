@@ -1,0 +1,11 @@
+version: "4.3"
+services:
+  ui-react:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ui-react_c
+    ports:
+      - '5173:5173'
+    volumes:
+      - .:/usr/src/app
